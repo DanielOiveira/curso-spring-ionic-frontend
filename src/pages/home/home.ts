@@ -26,16 +26,25 @@ export class HomePage {
     this.menu.swipeEnable(false);
   }
 
-  ionViewDidLeave() {
-    this.menu.swipeEnable(true);
+  ionViewDidEnter() {
+    this.auth.refreshToken()
+      .subscribe(response => {
+        this.auth.successfullLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+        error => { });
   }
 
-  login() {
-    this.auth.autheticated(this.creds)
+ionViewDidLeave() {
+  this.menu.swipeEnable(true);
+}
+
+login() {
+  this.auth.autheticated(this.creds)
     .subscribe(response => {
       this.auth.successfullLogin(response.headers.get('Authorization'));
       this.navCtrl.setRoot('CategoriasPage');
     },
-    error => {});
-  }
+      error => { });
+}
 }
