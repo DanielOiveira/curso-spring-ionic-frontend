@@ -35,16 +35,20 @@ export class HomePage {
         error => { });
   }
 
-ionViewDidLeave() {
-  this.menu.swipeEnable(true);
-}
+  ionViewDidLeave() {
+    this.menu.swipeEnable(true);
+  }
 
-login() {
-  this.auth.autheticated(this.creds)
-    .subscribe(response => {
-      this.auth.successfullLogin(response.headers.get('Authorization'));
-      this.navCtrl.setRoot('CategoriasPage');
-    },
-      error => { });
-}
+  login() {
+    this.auth.autheticated(this.creds)
+      .subscribe(response => {
+        this.auth.successfullLogin(response.headers.get('Authorization'));
+        this.navCtrl.setRoot('CategoriasPage');
+      },
+        error => { });
+  }
+
+  signup() {
+    this.navCtrl.push('SignupPage');
+  }
 }
