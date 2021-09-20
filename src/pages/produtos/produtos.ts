@@ -4,6 +4,7 @@ import { API_CONFIG } from '../../config/api.config';
 import { ProdutoDTO } from '../../models/produto.dto';
 import { ProdutoService } from '../../services/domain/produto.service';
 
+
 @IonicPage()
 @Component({
   selector: 'page-produtos',
@@ -38,6 +39,10 @@ export class ProdutosPage {
       },
       error => {})
     }
+  }
+
+  showDetail(){
+    this.navCtrl.push('ProdutoDetailPage');
   }
 
 }
